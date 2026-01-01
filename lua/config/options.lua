@@ -28,3 +28,4 @@ vim.g.clipboard = {
 vim.opt.termguicolors = true
 
 vim.opt.clipboard = "unnamedplus"
+vim.opt.shell = '/bin/bash'
