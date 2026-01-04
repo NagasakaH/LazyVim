@@ -11,11 +11,18 @@ return {
       local dotnet_cmd = vim.fn.executable("dotnet") == 1 and "dotnet" or "/usr/bin/dotnet"
 
       require("easy-dotnet").setup({
-        use_roslyn_lsp = true,
         dotnet_cli_path = dotnet_cmd,
-        -- Enable debugging with netcoredbg
+        lsp = {
+          roslynator_enabled = true, -- Automatically enable roslynator analyzer
+          analyzer_assemblies = {}, -- Any additional roslyn analyzers you might use like SonarAnalyzer.CSharp
+          config = {},
+        },
         dap = {
           enabled = true,
+        },
+        server = {
+          ---@type nil | "Off" | "Critical" | "Error" | "Warning" | "Information" | "Verbose" | "All"
+          log_level = "Off",
         },
       })
 
