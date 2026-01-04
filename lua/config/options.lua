@@ -7,6 +7,12 @@ vim.opt.relativenumber = false
 local parser_dir = vim.fn.stdpath("data") .. "/site"
 vim.opt.runtimepath:prepend(parser_dir)
 
+--- Add command to restart treesitter
+vim.api.nvim_create_user_command('TSRestart', function()
+  vim.treesitter.stop()
+  vim.treesitter.start()
+end, {})
+
 -- Add dotnet tools to PATH for nvim
 local home = vim.fn.expand("$HOME")
 local dotnet_tools = home .. "/.dotnet/tools"
