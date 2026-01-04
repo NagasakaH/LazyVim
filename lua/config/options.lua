@@ -3,6 +3,20 @@
 -- Add any additional options here
 vim.opt.relativenumber = false
 
+-- Add treesitter parser directory to runtimepath
+local parser_dir = vim.fn.stdpath("data") .. "/site"
+vim.opt.runtimepath:prepend(parser_dir)
+
+-- Add dotnet tools to PATH for nvim
+local home = vim.fn.expand("$HOME")
+local dotnet_tools = home .. "/.dotnet/tools"
+vim.env.PATH = dotnet_tools .. ":" .. vim.env.PATH
+
+-- Configure .NET SDK resolution
+vim.env.DOTNET_ROOT = "/usr/share/dotnet"
+vim.env.DOTNET_MULTILEVEL_LOOKUP = "0"
+vim.env.DOTNET_ROLL_FORWARD = "Major"
+
 -- OSC 52 clipboard support for DevContainer/WSL2
 -- Using vim.g.clipboard instead of external clipboard provider
 local function paste()
